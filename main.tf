@@ -5,12 +5,21 @@ terraform {
       version = "4.25.0"
     }
   }
+
+  backend "azurem" {
+    resource_group_name  = "StorageRG"
+    storage_account_name = "taskboardstoragerosen"
+    container_name       = "taskboardstoragerosen"
+    key                  = "terraform.tfstate"
+  }
 }
 
 provider "azurerm" {
   features {}
   subscription_id = "5245a442-b808-4f05-89bc-99386eaab978"
 }
+
+
 
 resource "random_integer" "random" {
   min = 10000
